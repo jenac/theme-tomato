@@ -9,19 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - uses: actions/checkout@master
-      - name: npm install
-        uses: actions/npm@master
+      - uses: actions/checkout@v2
+      - run: npm install
+      - uses: lannonbr/vsce-action@master
         with:
-          args: install --unsafe-perm
-      - name: Master
-        uses: actions/bin/filter@master
-        with:
-          args: branch master
-      - name: Vscode release plugin
-        uses: JCofman/vscodeaction@master
+          args: "publish -p $VSCE_TOKEN"
         env:
-          PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
-        with:
-          args: publish -p $PUBLISHER_TOKEN
-      
+          VSCE_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
