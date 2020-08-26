@@ -10,7 +10,7 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           # Fetches entire history, so we can analyze commits since last tag
           fetch-depth: 0
