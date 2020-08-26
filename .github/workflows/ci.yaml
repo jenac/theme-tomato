@@ -19,4 +19,3 @@ jobs:
     - run: npm install vsce
     - run: vsce package
       # args: publish -p $PUBLISHER_TOKEN
-      
