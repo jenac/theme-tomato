@@ -10,4 +10,4 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - name: Greeting
-         run: echo "How are you?"
+         run: echo 'whats new?'
