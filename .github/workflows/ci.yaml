@@ -1,0 +1,13 @@
+name: Build and Publish
+on:
+  pull_request:
+    types: [closed]
+
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Greeting
+         run: echo "How are you?"
