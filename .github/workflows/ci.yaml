@@ -9,13 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      steps:
+      - uses: actions/checkout@master
+      - name: npm install
+        uses: actions/npm@master
         with:
-          # Fetches entire history, so we can analyze commits since last tag
-          fetch-depth: 0
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
+          args: install --unsafe-perm
+      - name: Master
+        uses: actions/bin/filter@master
         with:
-          tag-prefix:  'v'
+          args: branch master
+      - name: Vscode release plugin
+        uses: JCofman/vscodeaction@master
+        env:
+          PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+        with:
+          args: publish -p $PUBLISHER_TOKEN
       
