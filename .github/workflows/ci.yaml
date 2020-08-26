@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - uses: lannonbr/vsce-action@master
-        with:
-          args: "publish -p $VSCE_TOKEN"
-        env:
-          VSCE_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+    - name: checkout
+      uses: actions/checkout@master
+    - name: setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - run: npm install
+    - run: npm install vsce
+    - run: vsce package
+      # args: publish -p $PUBLISHER_TOKEN
