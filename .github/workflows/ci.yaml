@@ -17,6 +17,6 @@ jobs:
         node-version: '12'
     - run: npm install
     - run: npm install vsce
-    - run: vsce package
+    - run: ./node_modules/.bin/vsce package
       # args: publish -p $PUBLISHER_TOKEN
       
