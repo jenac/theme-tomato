@@ -21,4 +21,4 @@ jobs:
     - run: ./node_modules/.bin/vsce publish -p $PUBLISHER_TOKEN
       env:
         PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
-      
+     
