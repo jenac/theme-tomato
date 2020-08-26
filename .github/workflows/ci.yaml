@@ -18,4 +18,7 @@ jobs:
     - run: npm install
     - run: npm install vsce
     - run: ./node_modules/.bin/vsce package
-      # args: publish -p $PUBLISHER_TOKEN
+    - run: ./node_modules/.bin/vsce publish -p $PUBLISHER_TOKEN
+      env:
+        PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+     
